@@ -1,0 +1,24 @@
+{% if latest_laptop_list %}
+    <table border="1">
+        <tr>
+            <th>Model</th>
+            <th>Processor</th>
+            <th>Memory</th>
+            <th>Storage</th>
+            <th>Graphics</th>
+            <th>Price</th>
+        </tr>
+        {% for laptop in latest_laptop_list %}
+        <tr>
+            <td>{{ laptop.model }}</td>
+            <td>{{ laptop.cpu }}</td>
+            <td>{{ laptop.ram }}</td>
+            <td>{{ laptop.storage }}</td>
+            <td>{{ laptop.gpu }}</td>
+            <td>{{ laptop.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p> No polls are available.</p>
+{% endif %}
