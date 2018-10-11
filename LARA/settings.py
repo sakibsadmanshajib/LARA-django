@@ -25,7 +25,7 @@ SECRET_KEY = 's@(#(p294ye03q=lnj%hl^994a)%i$dnpinjeiapos@g)z7hfk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['LARA.scubed.com.bd']
 
 
 # Application definition
