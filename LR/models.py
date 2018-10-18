@@ -1,15 +1,40 @@
 from django.db import models
 
 class Screen(models.Model):
-    diagonal_size = models.FloatField()
-    category = models.CharField(max_length=200)
-    resolution = models.CharField(max_length=200)
+
+    DIAGONAL_SIZE_CHOICES = (
+        ('12.1', '12.1'),
+        ('13.3', '13.3'),
+        ('14', '14'),
+        ('15.6', '15.6'),
+        ('17.3', '17.3'),
+    )
+
+    CATEGORY_CHOICES = (
+        ('IPS LED', 'IPS LED'),
+        ('IPS LCD', 'IPS LCD'),
+    )
+
+    RESOLUTION_CHOICES = (
+        ('768p', '768p'),
+        ('HD', 'HD'),
+        ('FHD', 'FHD'),
+    )
+
+    diagonal_size = models.FloatField(choices=DIAGONAL_SIZE_CHOICES)
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
+    resolution = models.CharField(max_length=200, choices=RESOLUTION_CHOICES)
 
     def __str__(self):
         return str(self.diagonal_size) + r'"' + " " + self.resolution + " " + self.category
 
 class LaptopModel(models.Model):
-    brand = models.CharField(max_length=200)
+
+    BRAND_CHOICES = (
+        ('ASUS', 'ASUS'),
+    )
+
+    brand = models.CharField(max_length=200, choices=BRAND_CHOICES)
     series = models.CharField(max_length=200)
     model = models.CharField(max_length=200)
     screen = models.ForeignKey(Screen, on_delete=models.CASCADE)
@@ -18,8 +43,21 @@ class LaptopModel(models.Model):
         return self.brand + " " + self.series + " " + self.model
 
 class CPU(models.Model):
-    brand = models.CharField(max_length=200)
-    category = models.CharField(max_length=200)
+
+    BRAND_CHOICES = (
+        ('Intel', 'Intel'),
+        ('AMD', 'AMD'),
+    )
+
+    CATEGORY_CHOICES = (
+        ('Core i9', 'Core i9'),
+        ('Core i7', 'Core i7'),
+        ('Core i5', 'Core i5'),
+        ('Core i3', 'Core i3'),
+    )
+
+    brand = models.CharField(max_length=200, choices=BRAND_CHOICES)
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
     model = models.CharField(max_length=200)
     base_clock = models.FloatField()
     boost_clock = models.FloatField()
